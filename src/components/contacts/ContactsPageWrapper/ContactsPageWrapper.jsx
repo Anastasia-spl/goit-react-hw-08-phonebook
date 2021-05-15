@@ -5,6 +5,10 @@ const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
+    '@media screen and (max-width: 767px)': {
+      flexDirection: 'column-reverse',
+      alignItems: 'center',
+    },
   },
 });
 

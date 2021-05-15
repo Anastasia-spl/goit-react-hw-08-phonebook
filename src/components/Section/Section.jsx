@@ -4,6 +4,9 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   section: {
     padding: '30px 0',
+    '@media screen and (max-width: 767px)': {
+      padding: '15px 0',
+    },
   },
 });
 const Section = ({ title, children }) => {

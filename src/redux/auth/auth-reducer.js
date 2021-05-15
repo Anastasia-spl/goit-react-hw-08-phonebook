@@ -50,7 +50,6 @@ const error = createReducer(null, {
   [signUpError]: setError,
   [logInError]: setError,
   [logOutError]: setError,
-  [getCurrentUserError]: setError,
   [signUpSuccess]: cleanError,
   [logInSuccess]: cleanError,
   [logOutSuccess]: cleanError,

@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
-    marginLeft: 0,
+    marginLeft: '15px',
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
@@ -86,6 +86,16 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: '0.0075em',
     color: '#3f51b5',
     backgroundColor: '#fff',
+    maxHeight: '38px',
+    '@media screen and (max-width: 767px)': {
+      fontSize: '12px',
+      lineHeight: 1.3,
+    },
+  },
+  greeting: {
+    '@media screen and (max-width: 767px)': {
+      display: 'none',
+    },
   },
 }));
 
@@ -119,7 +129,11 @@ const PrivateHeader = ({ userName, onLogOut, value, onFilterChange }) => {
             />
           </div>
           <div className={classes.grow} />
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            className={[classes.title, classes.greeting]}
+            variant="h6"
+            noWrap
+          >
             Welcome, {userName}!
           </Typography>
           <AccountCircle />

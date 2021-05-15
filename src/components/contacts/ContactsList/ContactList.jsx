@@ -19,6 +19,12 @@ const useStyles = createUseStyles({
     textTransform: 'capitalize',
     border: '1px solid #3f51b5',
     borderRadius: '5px',
+    transition: 'boxShadow 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    '&:hover, &:focus': {
+      cursor: 'pointer',
+      boxShadow:
+        '0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.12)',
+    },
   },
   text: {
     fontSize: '16px',
@@ -69,7 +75,6 @@ const ContactList = ({
 
 const mapStateToProps = state => ({
   emptyContacts: contactsSelectors.getContacts(state).length === 0,
-  filter: contactsSelectors.getFilter(state),
   filteredContacts: contactsSelectors.getFilteredContacts(state),
   isLoading: contactsSelectors.getLoader(state),
 });

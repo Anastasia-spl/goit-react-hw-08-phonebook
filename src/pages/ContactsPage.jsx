@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { contactsOperations } from '../redux/contacts';
 
 import Section from '../components/Section';
-import FlexWrapper from '../components/flexWrapper';
+import ContactsPageWrapper from '../components/contacts/ContactsPageWrapper';
 import ContactForm from '../components/contacts/ContactForm';
 import ContactList from '../components/contacts/ContactsList';
 
@@ -16,10 +16,10 @@ class Contacts extends Component {
     return (
       <>
         <Section>
-          <FlexWrapper>
+          <ContactsPageWrapper>
             <ContactList />
             <ContactForm />
-          </FlexWrapper>
+          </ContactsPageWrapper>
         </Section>
       </>
     );

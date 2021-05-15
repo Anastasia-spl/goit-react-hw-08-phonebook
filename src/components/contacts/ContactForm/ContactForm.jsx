@@ -1,10 +1,13 @@
-import { Component } from 'react';
+import { React, Component } from 'react';
 import { connect } from 'react-redux';
-import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
-import styles from './ContactForm.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
 import TextField from '../../TextField';
 import FormButton from '../../FormButton';
+
+import styles from './ContactForm.module.scss';
 
 class ContactForm extends Component {
   state = {
@@ -29,12 +32,16 @@ class ContactForm extends Component {
     );
 
     if (isDuplicateNumber) {
-      alert('This number is already in contacts.');
+      toast.error('This number is already in contacts.', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       return true;
     }
 
     if (isDuplicateName) {
-      alert(`${isDuplicateName.name} is already in contacts.`);
+      toast.error(`${isDuplicateName.name} is already in contacts.`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       return true;
     }
   };
@@ -58,7 +65,6 @@ class ContactForm extends Component {
       <form className={styles.Form} onSubmit={this.handleSubmit}>
         <TextField
           type="text"
-          // className={styles.input}
           name="name"
           value={name}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -79,6 +85,9 @@ class ContactForm extends Component {
           label="Number"
         />
         <FormButton type="submit">Add contact</FormButton>
+        <div>
+          <ToastContainer />
+        </div>
       </form>
     );
   }

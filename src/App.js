@@ -17,7 +17,7 @@ const SingUpPage = lazy(() => import('./pages/SignUpPage' /* webpackChunkName: "
 const LogInPage = lazy(() => import('./pages/LogInPage' /* webpackChunkName: "logIn-page" */))
 const ContactsPage = lazy(() => import('./pages/ContactsPage' /* webpackChunkName: "contacts-page" */));
 const Page404 = lazy(() => import('./pages/Page404' /* webpackChunkName: "404-page" */))
-const ErrorPage = lazy(() => import('./pages/ErrorPage' /* webpackChunkName: "error-page" */))
+const Error = lazy(() => import('./components/Error' /* webpackChunkName: "error-page" */))
 
 class App extends Component {
   componentDidMount() {
@@ -31,10 +31,10 @@ class App extends Component {
         <AppBar />
         
         <Suspense fallback={Loader}>
-          {isError && <ErrorPage error={isError} />}
+          {isError && <Error error={isError} />}
           {isLoading ? <Loader /> : 
           <Switch>
-              <PublicRoute path={routes.HomePage} exact component={HomePage}/>
+              <PublicRoute path={routes.HomePage} exact component={HomePage} />
               <PublicRoute path={routes.SignUpPage} restricted component={SingUpPage} redirectTo={routes.ContactsPage} />
               <PublicRoute path={routes.LogInPage} restricted component={LogInPage} redirectTo={routes.ContactsPage} />
               <PrivateRoute path={routes.ContactsPage} component={ContactsPage} redirectTo={routes.LogInPage} />
@@ -42,7 +42,6 @@ class App extends Component {
           </Switch>
           }
         </Suspense>
-        
     </div>
    );
   }
