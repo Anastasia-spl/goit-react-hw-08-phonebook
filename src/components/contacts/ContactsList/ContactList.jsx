@@ -1,7 +1,12 @@
 import { createUseStyles } from 'react-jss';
 import { connect } from 'react-redux';
+import { lazy } from 'react';
+
 import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
 import Loader from '../../Loader';
+const Error = lazy(() =>
+  import('../../Error' /* webpackChunkName: "error-page" */),
+);
 
 const useStyles = createUseStyles({
   contactItem: {
@@ -41,11 +46,13 @@ const ContactList = ({
   onDeleteContact,
   isLoading,
   emptyContacts,
+  isError,
 }) => {
   const { contactItem, deleteBtn, text } = useStyles();
 
   return (
     <>
+      {isError && <Error error={isError} />}
       {isLoading ? (
         <Loader />
       ) : (
@@ -77,6 +84,7 @@ const mapStateToProps = state => ({
   emptyContacts: contactsSelectors.getContacts(state).length === 0,
   filteredContacts: contactsSelectors.getFilteredContacts(state),
   isLoading: contactsSelectors.getLoader(state),
+  isError: contactsSelectors.getIsError(state),
 });
 
 const mapDispatchToProps = dispatch => ({

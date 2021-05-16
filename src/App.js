@@ -3,8 +3,6 @@ import { lazy, Suspense, Component } from 'react';
 import { connect } from 'react-redux';
 import routes from './routes';
 import { authOperations, authSelectors } from './redux/auth';
-import {  contactsSelectors } from './redux/contacts';
-
 
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
@@ -17,7 +15,6 @@ const SingUpPage = lazy(() => import('./pages/SignUpPage' /* webpackChunkName: "
 const LogInPage = lazy(() => import('./pages/LogInPage' /* webpackChunkName: "logIn-page" */))
 const ContactsPage = lazy(() => import('./pages/ContactsPage' /* webpackChunkName: "contacts-page" */));
 const Page404 = lazy(() => import('./pages/Page404' /* webpackChunkName: "404-page" */))
-const Error = lazy(() => import('./components/Error' /* webpackChunkName: "error-page" */))
 
 class App extends Component {
   componentDidMount() {
@@ -31,7 +28,6 @@ class App extends Component {
         <AppBar />
         
         <Suspense fallback={Loader}>
-          {isError && <Error error={isError} />}
           {isLoading ? <Loader /> : 
           <Switch>
               <PublicRoute path={routes.HomePage} exact component={HomePage} />
@@ -49,7 +45,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   isLoading: authSelectors.getIsLoading(state),
-  isError: authSelectors.getIsError(state) || contactsSelectors.getIsError(state),
 })
 
 const mapDispatchToProps = {

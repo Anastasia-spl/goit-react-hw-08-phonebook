@@ -40,7 +40,7 @@ const logIn = credentials => async dispatch => {
     token.set(response.data.token);
     dispatch(logInSuccess(response.data));
   } catch (error) {
-    dispatch(logInError(error.message));
+    dispatch(logInError('Wrong password or email.'));
   }
 }
 

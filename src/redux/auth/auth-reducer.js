@@ -46,24 +46,26 @@ const isLoading = createReducer(false, {
 const setError = (_, { payload }) => payload;
 const cleanError = () => null;
 
-const error = createReducer(null, {
+const errorSignUp = createReducer(null, {
   [signUpError]: setError,
+  [signUpSuccess]: cleanError,
+  [signUpRequest]: cleanError,
+});
+
+const errorLogIn = createReducer(null, {
   [logInError]: setError,
   [logOutError]: setError,
-  [signUpSuccess]: cleanError,
   [logInSuccess]: cleanError,
   [logOutSuccess]: cleanError,
-  [getCurrentUserSuccess]: cleanError,
-  [signUpRequest]: cleanError,
   [logInRequest]: cleanError,
   [logOutRequest]: cleanError,
-  [getCurrentUserRequest]: cleanError,
-})
+});
 
 export default combineReducers({
   user,
   isAuthenticated,
   token,
   isLoading,
-  error
+  errorSignUp,
+  errorLogIn
 })
