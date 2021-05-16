@@ -54,6 +54,10 @@ const error = createReducer(null, {
   [logInSuccess]: cleanError,
   [logOutSuccess]: cleanError,
   [getCurrentUserSuccess]: cleanError,
+  [signUpRequest]: cleanError,
+  [logInRequest]: cleanError,
+  [logOutRequest]: cleanError,
+  [getCurrentUserRequest]: cleanError,
 })
 
 export default combineReducers({

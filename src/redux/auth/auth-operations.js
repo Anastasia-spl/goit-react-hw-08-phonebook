@@ -21,7 +21,14 @@ const signUp = credentials => async dispatch => {
     token.set(response.data.token)
     dispatch(signUpSuccess(response.data));
   } catch (error) {
-    dispatch(signUpError(error.message));
+    if (error?.response?.data?.message?.includes('is shorter than the minimum allowed length (7)')) {
+      dispatch(signUpError('Your password is shorter than the minimum allowed length (7)'));
+    }
+    else if (error?.response?.data?.code === 11000) {
+      dispatch(signUpError(`Email "${error.response.data.keyValue.email}" is already used.`));
+    } else {
+      dispatch(signUpError(error.message));
+    }
   }
 }
 

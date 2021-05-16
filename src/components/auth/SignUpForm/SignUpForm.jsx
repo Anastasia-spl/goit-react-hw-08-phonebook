@@ -35,6 +35,7 @@ class SignUpForm extends Component {
           onChange={this.handleChange}
           value={name}
           label="Name"
+          required
         />
 
         <TextField
@@ -43,6 +44,7 @@ class SignUpForm extends Component {
           onChange={this.handleChange}
           value={email}
           label="Email"
+          required
         />
         <TextField
           type="password"
@@ -50,6 +52,7 @@ class SignUpForm extends Component {
           onChange={this.handleChange}
           value={password}
           label="Password"
+          required
         />
         <FormButton type="submit">Sign up</FormButton>
       </Form>
