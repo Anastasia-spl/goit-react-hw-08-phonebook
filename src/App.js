@@ -22,11 +22,10 @@ class App extends Component {
   }
   
   render() {
-    const { isLoading, isError} = this.props;
+    const { isLoading } = this.props;
     return (
       <div className="App">
         <AppBar />
-        
         <Suspense fallback={Loader}>
           {isLoading ? <Loader /> : 
           <Switch>
